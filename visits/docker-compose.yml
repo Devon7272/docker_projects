@@ -1,0 +1,10 @@
+# restart ['no'(never attempt to restart the container), always(always restart container no matter what), on-failure(stop container if exit code is anythgin other than 0), unless-stopped(always restart unless its done forcibly)]
+version:  '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: always
+    build: .
+    ports:
+      - "4001:8081"
