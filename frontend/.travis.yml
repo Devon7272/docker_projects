@@ -5,7 +5,7 @@ services:
   - docker 
 
 before_install: 
-  - docker build -t Devon7272/docker_projects -f Dockefile.dev .
+  - docker build -t drob/docker_projects -f Dockerfile.dev .
 
 script:
-  - docker run Devon7272/docker_projects npm run test -- --coverage
+  - docker run drob/docker_projects npm run test -- --coverage
