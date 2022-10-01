@@ -1,0 +1,21 @@
+# This allows us to specify our docker file if if is named outside of it standard naming convention and also allow us to mount volumes in a easy manner. We set up a test section here to test our containers and applications a little more effectivly. The first section of this docker compose will run and deploy our container and host the application, the second container will be responsible for running test and watching for changes to the volumes, if change to volumes occur the a new container will be redeployed with those changes.
+version: '3'
+services: 
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - .:/app
+  
+  tests: 
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
