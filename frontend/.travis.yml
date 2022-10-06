@@ -1,12 +1,13 @@
-language: ruby
+language: generic
 
 sudo: required
 services:
   - docker
 
 before_install: 
+  - gen install bundler
   - gem install rake
   - docker build -t drob/docker_projects -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true drob/docker_projects npm run test -- --coverage 
+  - docker run -e CI=true -t drob/docker_projects npm run test -- --coverage 
