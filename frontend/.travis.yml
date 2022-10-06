@@ -1,8 +1,11 @@
+language: ruby
+
 sudo: required
 services:
   - docker
 
 before_install: 
+  - gem install rake
   - docker build -t drob/docker_projects -f Dockerfile.dev .
 
 script:
