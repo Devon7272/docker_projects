@@ -1,6 +1,5 @@
 # For travis ci we are writing a yml file that will run our CI/CD pipe line. We have sudo defined so that travis can assume sudo privildges to run docker, we have the repo where our project sits and finally we have our script which will run our application this -- --coverage is so that docker can run and close without any manual intervention.
 language: generic
-
 sudo: required 
 services:
   - docker 
@@ -9,4 +8,4 @@ before_install:
   - docker build -t drob/docker_projects -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true drob/docker_projects npm run test 
+  - docker run -e CI=true drob/docker_projects npm run test -- --coverage
